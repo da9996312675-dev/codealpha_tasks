@@ -1,1 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A premium, fully-featured Music Player Web Application with playlist, equalizer, dark/light theme, and keyboard shortcuts. Enjoy your music in style." />
+  <meta name="keywords" content="music player, online music, playlist, streaming, audio player" />
+  <meta name="author" content="Senior Frontend Developer" />
+  <title>SoundWave — Premium Music Player</title>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark-theme" id="app-body">
+
+  <!-- ============================================================
+       LOADING SCREEN
+  ============================================================ -->
+  <div id="loading-screen" class="loading-screen" aria-label="Loading music player">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <i class="fas fa-music" aria-hidden="true"></i>
+      </div>
+      <div class="loading-bars" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <p class="loading-text">SoundWave</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MAIN APP CONTAINER
+  ============================================================ -->
+  <div id="app" class="app-container" role="main">
+
+    <!-- ---- SIDEBAR / LEFT PANEL ---- -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="App navigation">
+      <!-- Logo -->
+      <div class="sidebar-logo">
+        <i class="fas fa-headphones-alt" aria-hidden="true"></i>
+        <span class="logo-text">SoundWave</span>
+      </div>
+
+      <!-- Nav Menu -->
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <ul>
+          <li>
+            <button class="nav-btn active" id="nav-home" data-section="home" aria-label="Home" aria-current="true">
+              <i class="fas fa-home" aria-hidden="true"></i>
+              <span>Home</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-btn" id="nav-search" data-section="search" aria-label="Search">
+              <i class="fas fa-search" aria-hidden="true"></i>
+              <span>Search</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-btn" id="nav-playlist" data-section="playlist" aria-label="Playlist">
+              <i class="fas fa-list-music" aria-hidden="true"></i>
+              <span>Playlist</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-btn" id="nav-favorites" data-section="favorites" aria-label="Favorites">
+              <i class="fas fa-heart" aria-hidden="true"></i>
+              <span>Favorites</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-btn" id="nav-recent" data-section="recent" aria-label="Recently Played">
+              <i class="fas fa-history" aria-hidden="true"></i>
+              <span>Recent</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Theme Toggle -->
+      <div class="sidebar-bottom">
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle Theme">
+          <i class="fas fa-moon" id="theme-icon" aria-hidden="true"></i>
+          <span id="theme-label">Dark Mode</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ---- MAIN CONTENT AREA ---- -->
+    <main class="main-content" id="main-content">
+
+      <!-- Top Bar -->
+      <header class="top-bar" role="banner">
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle sidebar" aria-expanded="false">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="search-container" role="search">
+          <i class="fas fa-search search-icon" aria-hidden="true"></i>
+          <input
+            type="search"
+            id="search-input"
+            class="search-input"
+            placeholder="Search songs, artists..."
+            aria-label="Search songs and artists"
+            autocomplete="off"
+          />
+          <div class="search-results" id="search-results" role="listbox" aria-label="Search results" hidden></div>
+        </div>
+        <div class="top-bar-actions">
+          <button class="icon-btn" id="mini-player-toggle" aria-label="Toggle mini player" title="Mini Player">
+            <i class="fas fa-compress-alt" aria-hidden="true"></i>
+          </button>
+          <button class="icon-btn" id="keyboard-shortcuts-btn" aria-label="Keyboard shortcuts" title="Keyboard Shortcuts">
+            <i class="fas fa-keyboard" aria-hidden="true"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- ============================================================
+           SECTION: HOME (Player + Playlist)
+      ============================================================ -->
+      <section class="content-section active" id="section-home" aria-label="Music player">
+        <div class="home-layout">
+
+          <!-- ---- PLAYER CARD ---- -->
+          <div class="player-card" id="player-card" role="region" aria-label="Now playing">
+
+            <!-- Background Blur -->
+            <div class="player-bg-blur" id="player-bg-blur" aria-hidden="true"></div>
+
+            <!-- Card Header -->
+            <div class="player-header">
+              <span class="now-playing-label">
+                <span class="pulse-dot" aria-hidden="true"></span>
+                Now Playing
+              </span>
+              <div class="player-header-actions">
+                <button class="icon-btn favorite-btn" id="favorite-btn" aria-label="Add to favorites" title="Favorite" aria-pressed="false">
+                  <i class="fas fa-heart" aria-hidden="true"></i>
+                </button>
+                <button class="icon-btn options-btn" id="options-btn" aria-label="More options" title="Options">
+                  <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Album Art -->
+            <div class="album-art-container" aria-label="Album art">
+              <div class="album-art-glow" id="album-glow" aria-hidden="true"></div>
+              <div class="album-art-wrapper" id="album-art-wrapper">
+                <img
+                  src="assets/images/cover1.png"
+                  alt="Album cover for current song"
+                  id="album-cover"
+                  class="album-cover"
+                  draggable="false"
+                />
+                <!-- Vinyl ring -->
+                <div class="vinyl-ring" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <!-- Song Info -->
+            <div class="song-info" aria-live="polite" aria-atomic="true">
+              <h1 class="song-title" id="song-title">Neon Dreams</h1>
+              <p class="artist-name" id="artist-name">The Synthwave Collective</p>
+              <p class="album-name" id="album-name">Retrowave Vol. 1</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-section" aria-label="Playback progress">
+              <div class="time-display">
+                <span id="current-time" class="time current" aria-label="Current time">0:00</span>
+                <span id="total-duration" class="time total" aria-label="Total duration">0:00</span>
+              </div>
+              <div
+                class="progress-bar-container"
+                id="progress-container"
+                role="slider"
+                aria-label="Seek"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+                tabindex="0"
+              >
+                <div class="progress-bar" id="progress-bar">
+                  <div class="progress-fill" id="progress-fill"></div>
+                  <div class="progress-thumb" id="progress-thumb" aria-hidden="true"></div>
+                </div>
+                <!-- Waveform decoration -->
+                <div class="waveform" id="waveform" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Main Controls -->
+            <div class="controls-section">
+              <div class="secondary-controls">
+                <button
+                  class="ctrl-btn shuffle-btn"
+                  id="shuffle-btn"
+                  aria-label="Shuffle"
+                  title="Shuffle (S)"
+                  aria-pressed="false"
+                >
+                  <i class="fas fa-random" aria-hidden="true"></i>
+                </button>
+                <button
+                  class="ctrl-btn repeat-btn"
+                  id="repeat-btn"
+                  aria-label="Repeat"
+                  title="Repeat (R)"
+                  aria-pressed="false"
+                  data-repeat="none"
+                >
+                  <i class="fas fa-redo" aria-hidden="true"></i>
+                  <span class="repeat-badge" id="repeat-badge" aria-hidden="true"></span>
+                </button>
+              </div>
+
+              <div class="primary-controls">
+                <button
+                  class="ctrl-btn prev-btn"
+                  id="prev-btn"
+                  aria-label="Previous song (Left Arrow)"
+                  title="Previous"
+                >
+                  <i class="fas fa-step-backward" aria-hidden="true"></i>
+                </button>
+                <button
+                  class="ctrl-btn play-btn"
+                  id="play-btn"
+                  aria-label="Play (Space)"
+                  title="Play / Pause"
+                  aria-pressed="false"
+                >
+                  <span class="play-btn-ring" aria-hidden="true"></span>
+                  <i class="fas fa-play" id="play-icon" aria-hidden="true"></i>
+                </button>
+                <button
+                  class="ctrl-btn next-btn"
+                  id="next-btn"
+                  aria-label="Next song (Right Arrow)"
+                  title="Next"
+                >
+                  <i class="fas fa-step-forward" aria-hidden="true"></i>
+                </button>
+              </div>
+
+              <div class="secondary-controls right-controls">
+                <button
+                  class="ctrl-btn playlist-toggle-btn"
+                  id="playlist-toggle-btn"
+                  aria-label="Toggle playlist view"
+                  title="Playlist"
+                  aria-pressed="false"
+                >
+                  <i class="fas fa-list" aria-hidden="true"></i>
+                </button>
+                <button
+                  class="ctrl-btn volume-toggle-btn"
+                  id="volume-toggle-btn"
+                  aria-label="Toggle volume panel"
+                  title="Volume"
+                >
+                  <i class="fas fa-volume-up" id="volume-icon" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Volume Panel -->
+            <div class="volume-panel" id="volume-panel" aria-label="Volume control" hidden>
+              <button
+                class="mute-btn"
+                id="mute-btn"
+                aria-label="Mute (M)"
+                title="Mute"
+                aria-pressed="false"
+              >
+                <i class="fas fa-volume-up" id="mute-icon" aria-hidden="true"></i>
+              </button>
+              <div
+                class="volume-slider-container"
+                role="slider"
+                aria-label="Volume"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="80"
+                tabindex="0"
+                id="volume-slider-container"
+              >
+                <div class="volume-track" id="volume-track">
+                  <div class="volume-fill" id="volume-fill"></div>
+                  <div class="volume-thumb" id="volume-thumb" aria-hidden="true"></div>
+                </div>
+              </div>
+              <span class="volume-value" id="volume-value" aria-label="Volume level">80%</span>
+            </div>
+
+          </div><!-- /.player-card -->
+
+          <!-- ---- PLAYLIST PANEL ---- -->
+          <div class="playlist-panel" id="playlist-panel" role="region" aria-label="Playlist">
+            <div class="playlist-header">
+              <h2 class="playlist-title">
+                <i class="fas fa-music" aria-hidden="true"></i>
+                Up Next
+              </h2>
+              <span class="playlist-count" id="playlist-count">6 Songs</span>
+            </div>
+
+            <!-- Playlist Search -->
+            <div class="playlist-search-wrap">
+              <i class="fas fa-search" aria-hidden="true"></i>
+              <input
+                type="search"
+                id="playlist-search"
+                placeholder="Filter playlist..."
+                aria-label="Filter playlist songs"
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- Playlist Items -->
+            <ul class="playlist-list" id="playlist-list" role="listbox" aria-label="Song list">
+              <!-- Dynamically generated by JS -->
+            </ul>
+          </div><!-- /.playlist-panel -->
+
+        </div><!-- /.home-layout -->
+      </section>
+
+      <!-- ============================================================
+           SECTION: SEARCH
+      ============================================================ -->
+      <section class="content-section" id="section-search" aria-label="Search" hidden>
+        <div class="section-wrapper">
+          <h2 class="section-heading"><i class="fas fa-search" aria-hidden="true"></i> Search</h2>
+          <div class="big-search-wrap">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input
+              type="search"
+              id="big-search-input"
+              class="big-search-input"
+              placeholder="Search for songs, artists..."
+              aria-label="Search songs"
+              autocomplete="off"
+            />
+          </div>
+          <div class="search-results-grid" id="big-search-results" role="list" aria-label="Search results">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SECTION: PLAYLIST (full)
+      ============================================================ -->
+      <section class="content-section" id="section-playlist" aria-label="Full playlist" hidden>
+        <div class="section-wrapper">
+          <h2 class="section-heading"><i class="fas fa-list-music" aria-hidden="true"></i> My Playlist</h2>
+          <div class="full-playlist-grid" id="full-playlist-grid" role="list" aria-label="All songs">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SECTION: FAVORITES
+      ============================================================ -->
+      <section class="content-section" id="section-favorites" aria-label="Favorite songs" hidden>
+        <div class="section-wrapper">
+          <h2 class="section-heading"><i class="fas fa-heart" aria-hidden="true"></i> Favorites</h2>
+          <div class="full-playlist-grid" id="favorites-grid" role="list" aria-label="Favorite songs">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SECTION: RECENT
+      ============================================================ -->
+      <section class="content-section" id="section-recent" aria-label="Recently played" hidden>
+        <div class="section-wrapper">
+          <h2 class="section-heading"><i class="fas fa-history" aria-hidden="true"></i> Recently Played</h2>
+          <div class="full-playlist-grid" id="recent-grid" role="list" aria-label="Recently played songs">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+    </main><!-- /.main-content -->
+
+  </div><!-- /#app -->
+
+  <!-- ============================================================
+       MINI PLAYER (floating)
+  ============================================================ -->
+  <div class="mini-player" id="mini-player" role="region" aria-label="Mini player" hidden>
+    <img src="assets/images/cover1.png" alt="Mini player album cover" id="mini-cover" class="mini-cover" />
+    <div class="mini-info">
+      <p class="mini-title" id="mini-title">Neon Dreams</p>
+      <p class="mini-artist" id="mini-artist">The Synthwave Collective</p>
+    </div>
+    <div class="mini-controls">
+      <button class="mini-btn" id="mini-prev" aria-label="Previous song">
+        <i class="fas fa-step-backward" aria-hidden="true"></i>
+      </button>
+      <button class="mini-btn mini-play-btn" id="mini-play" aria-label="Play/Pause">
+        <i class="fas fa-play" id="mini-play-icon" aria-hidden="true"></i>
+      </button>
+      <button class="mini-btn" id="mini-next" aria-label="Next song">
+        <i class="fas fa-step-forward" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="mini-progress">
+      <div class="mini-progress-fill" id="mini-progress-fill"></div>
+    </div>
+    <button class="mini-btn mini-close-btn" id="mini-close" aria-label="Close mini player">
+      <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <!-- ============================================================
+       KEYBOARD SHORTCUTS MODAL
+  ============================================================ -->
+  <div class="modal-overlay" id="shortcuts-modal" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts" hidden>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fas fa-keyboard" aria-hidden="true"></i> Keyboard Shortcuts</h3>
+        <button class="modal-close-btn" id="shortcuts-modal-close" aria-label="Close modal">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="shortcuts-table" aria-label="Keyboard shortcuts list">
+          <thead>
+            <tr><th>Key</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><kbd>Space</kbd></td><td>Play / Pause</td></tr>
+            <tr><td><kbd>→</kbd></td><td>Next Song</td></tr>
+            <tr><td><kbd>←</kbd></td><td>Previous Song</td></tr>
+            <tr><td><kbd>↑</kbd></td><td>Volume Up (+5%)</td></tr>
+            <tr><td><kbd>↓</kbd></td><td>Volume Down (-5%)</td></tr>
+            <tr><td><kbd>M</kbd></td><td>Mute / Unmute</td></tr>
+            <tr><td><kbd>R</kbd></td><td>Toggle Repeat</td></tr>
+            <tr><td><kbd>S</kbd></td><td>Toggle Shuffle</td></tr>
+            <tr><td><kbd>F</kbd></td><td>Toggle Favorite</td></tr>
+            <tr><td><kbd>Esc</kbd></td><td>Close Modals</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden HTML5 Audio Player (required by script.js) -->
+  <audio id="audio-player" preload="metadata" crossorigin="anonymous" aria-hidden="true"></audio>
+
+  <!-- Hidden YouTube Player Container (required by YouTube IFrame API) -->
+  <div
+    id="yt-player-wrapper"
+    aria-hidden="true"
+    style="position:fixed;width:1px;height:1px;bottom:0;left:0;overflow:hidden;opacity:0.01;pointer-events:none;z-index:-1;"
+  >
+    <div id="youtube-player"></div>
+  </div>
+
+
+  <!-- YouTube IFrame Player API (must be before script.js) -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+  <!-- Main JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
