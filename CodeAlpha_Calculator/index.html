@@ -1,1 +1,264 @@
-# Calculator Project
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snippex | Modern Image Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+            </div>
+            <h1>Snippex</h1>
+        </div>
+        <div class="header-right">
+            <div class="filters-wrapper">
+                <button class="filter-icon" title="More filters">⚙</button>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="nature">Nature</button>
+                    <button class="filter-btn" data-filter="architecture">Architecture</button>
+                    <button class="filter-btn" data-filter="portrait">Portrait</button>
+                    <button class="filter-btn" data-filter="abstract">Abstract</button>
+                    <button class="filter-btn" data-filter="travel">Travel</button>
+                </div>
+            </div>
+            <div class="image-count"><span id="count">25</span> images</div>
+        </div>
+    </header>
+
+    <main class="gallery-container">
+        <div class="section-label">All Works</div>
+        <div class="gallery-grid">
+            <div class="gallery-item" data-category="nature" data-title="Mountain Lake" data-description="Serene alpine waters reflecting majestic peaks">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Mountain lake">
+                <div class="hover-details"><h3>Mountain Lake</h3><p>Serene alpine waters reflecting majestic peaks</p></div>
+            </div>
+            <div class="gallery-item" data-category="architecture" data-title="Modern Skyline" data-description="Contemporary urban architectural design">
+                <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=500&q=80" alt="Modern building">
+                <div class="hover-details"><h3>Modern Skyline</h3><p>Contemporary urban architectural design</p></div>
+            </div>
+            <div class="gallery-item" data-category="abstract" data-title="Dynamic Motion" data-description="Abstract exploration of movement and color">
+                <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=500&q=80" alt="Abstract motion">
+                <div class="hover-details"><h3>Dynamic Motion</h3><p>Abstract exploration of movement and color</p></div>
+            </div>
+            <div class="gallery-item" data-category="portrait" data-title="Portrait Study" data-description="Intimate portrait capturing genuine emotion">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Portrait">
+                <div class="hover-details"><h3>Portrait Study</h3><p>Intimate portrait capturing genuine emotion</p></div>
+            </div>
+            <div class="gallery-item" data-category="nature" data-title="Forest Path" data-description="Tranquil woodland journey through nature">
+                <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=500&q=80" alt="Forest">
+                <div class="hover-details"><h3>Forest Path</h3><p>Tranquil woodland journey through nature</p></div>
+            </div>
+            <div class="gallery-item" data-category="travel" data-title="Tropical Beach" data-description="Paradise escape with crystal blue waters">
+                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=500&q=80" alt="Beach">
+                <div class="hover-details"><h3>Tropical Beach</h3><p>Paradise escape with crystal blue waters</p></div>
+            </div>
+            <div class="gallery-item" data-category="architecture" data-title="City Lights" data-description="Urban nightscape with vibrant energy">
+                <img src="https://images.unsplash.com/photo-1479839672679-a46482f0e7c8?auto=format&fit=crop&w=500&q=80" alt="City">
+                <div class="hover-details"><h3>City Lights</h3><p>Urban nightscape with vibrant energy</p></div>
+            </div>
+            <div class="gallery-item" data-category="portrait" data-title="Studio Glow" data-description="Professional portrait with dramatic lighting">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80" alt="Nature portrait">
+                <div class="hover-details"><h3>Studio Glow</h3><p>Professional portrait with dramatic lighting</p></div>
+            </div>
+            <div class="gallery-item" data-category="abstract" data-title="Literary Dreams" data-description="Conceptual imagery exploring imagination">
+                <img src="https://images.unsplash.com/photo-1549887534-7ef0f4dfb3f6?auto=format&fit=crop&w=500&q=80" alt="Book">
+                <div class="hover-details"><h3>Literary Dreams</h3><p>Conceptual imagery exploring imagination</p></div>
+            </div>
+            <div class="gallery-item" data-category="travel" data-title="Wanderlust" data-description="Adventure awaits in distant horizons">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Travel">
+                <div class="hover-details"><h3>Wanderlust</h3><p>Adventure awaits in distant horizons</p></div>
+            </div>
+            <div class="gallery-item" data-category="nature" data-title="Sunset Blaze" data-description="Golden hour painting the sky in warmth">
+                <img src="https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?auto=format&fit=crop&w=500&q=80" alt="Sunset">
+                <div class="hover-details"><h3>Sunset Blaze</h3><p>Golden hour painting the sky in warmth</p></div>
+            </div>
+            <div class="gallery-item" data-category="architecture" data-title="Glass Geometry" data-description="Modern design with clean lines and form">
+                <img src="https://images.unsplash.com/photo-1479839672679-a46482f0e7c8?auto=format&fit=crop&w=500&q=80" alt="Glass building">
+                <div class="hover-details"><h3>Glass Geometry</h3><p>Modern design with clean lines and form</p></div>
+            </div>
+            <div class="gallery-item" data-category="portrait" data-title="Character Study" data-description="Deep character portrayal and expression">
+                <img src="https://images.unsplash.com/photo-1531101775325-c69000e6af5e?auto=format&fit=crop&w=500&q=80" alt="Character">
+                <div class="hover-details"><h3>Character Study</h3><p>Deep character portrayal and expression</p></div>
+            </div>
+            <div class="gallery-item" data-category="abstract" data-title="Chromatic Flow" data-description="Colors blending in seamless harmony">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=500&q=80" alt="Colors">
+                <div class="hover-details"><h3>Chromatic Flow</h3><p>Colors blending in seamless harmony</p></div>
+            </div>
+            <div class="gallery-item" data-category="nature" data-title="Desert Mirage" data-description="Golden sands under endless blue skies">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Desert">
+                <div class="hover-details"><h3>Desert Mirage</h3><p>Golden sands under endless blue skies</p></div>
+            </div>
+            <div class="gallery-item" data-category="travel" data-title="Ancient Ruins" data-description="Historical monuments standing through time">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Ruins">
+                <div class="hover-details"><h3>Ancient Ruins</h3><p>Historical monuments standing through time</p></div>
+            </div>
+            <div class="gallery-item" data-category="architecture" data-title="Bridge Vision" data-description="Architectural marvel connecting worlds">
+                <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=500&q=80" alt="Bridge">
+                <div class="hover-details"><h3>Bridge Vision</h3><p>Architectural marvel connecting worlds</p></div>
+            </div>
+            <div class="gallery-item" data-category="portrait" data-title="Candid Moment" data-description="Unguarded beauty in natural setting">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Candid">
+                <div class="hover-details"><h3>Candid Moment</h3><p>Unguarded beauty in natural setting</p></div>
+            </div>
+            <div class="gallery-item" data-category="abstract" data-title="Digital Dreams" data-description="Surreal digital art creation">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=500&q=80" alt="Digital">
+                <div class="hover-details"><h3>Digital Dreams</h3><p>Surreal digital art creation</p></div>
+            </div>
+            <div class="gallery-item" data-category="nature" data-title="Ocean Wave" data-description="Powerful seas and raw coastal beauty">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="Ocean">
+                <div class="hover-details"><h3>Ocean Wave</h3><p>Powerful seas and raw coastal beauty</p></div>
+            </div>
+            <div class="gallery-item" data-category="travel" data-title="Island Paradise" data-description="Tropical getaway destination">
+                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=500&q=80" alt="Island">
+                <div class="hover-details"><h3>Island Paradise</h3><p>Tropical getaway destination</p></div>
+            </div>
+            <div class="gallery-item" data-category="architecture" data-title="Window Frame" data-description="Layered perspective and depth">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=500&q=80" alt="Window">
+                <div class="hover-details"><h3>Window Frame</h3><p>Layered perspective and depth</p></div>
+            </div>
+            <div class="gallery-item" data-category="portrait" data-title="Fashion Forward" data-description="Style and elegance personified">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Fashion">
+                <div class="hover-details"><h3>Fashion Forward</h3><p>Style and elegance personified</p></div>
+            </div>
+            <div class="gallery-item" data-category="abstract" data-title="Texture Play" data-description="Intricate patterns and surface details">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=500&q=80" alt="Texture">
+                <div class="hover-details"><h3>Texture Play</h3><p>Intricate patterns and surface details</p></div>
+            </div>
+            <div class="gallery-item" data-category="nature" data-title="Mountain Peak" data-description="Towering heights touching the sky">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Mountain">
+                <div class="hover-details"><h3>Mountain Peak</h3><p>Towering heights touching the sky</p></div>
+            </div>
+            <div class="gallery-item" data-category="travel" data-title="Street Vibes" data-description="Urban exploration and local culture">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Street">
+                <div class="hover-details"><h3>Street Vibes</h3><p>Urban exploration and local culture</p></div>
+            </div>
+            <div class="gallery-item" data-category="architecture" data-title="Minimalist Form" data-description="Simplicity in structural elegance">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=500&q=80" alt="Minimal">
+                <div class="hover-details"><h3>Minimalist Form</h3><p>Simplicity in structural elegance</p></div>
+            </div>
+            <div class="gallery-item" data-category="portrait" data-title="Soul Window" data-description="Eyes revealing inner depth and emotion">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Eyes">
+                <div class="hover-details"><h3>Soul Window</h3><p>Eyes revealing inner depth and emotion</p></div>
+            </div>
+            <div class="gallery-item" data-category="abstract" data-title="Light Dance" data-description="Luminosity and shadow interplay">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=500&q=80" alt="Light">
+                <div class="hover-details"><h3>Light Dance</h3><p>Luminosity and shadow interplay</p></div>
+            </div>
+            <div class="gallery-item" data-category="nature" data-title="Forest Mystique" data-description="Deep woods shrouded in mystery">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=500&q=80" alt="Forest mystique">
+                <div class="hover-details"><h3>Forest Mystique</h3><p>Deep woods shrouded in mystery</p></div>
+            </div>
+            <div class="gallery-item" data-category="travel" data-title="Cultural Heritage" data-description="Traditions and history preserved">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Culture">
+                <div class="hover-details"><h3>Cultural Heritage</h3><p>Traditions and history preserved</p></div>
+            </div>
+            <div class="gallery-item" data-category="architecture" data-title="Curved Lines" data-description="Organic architectural forms">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=500&q=80" alt="Curved">
+                <div class="hover-details"><h3>Curved Lines</h3><p>Organic architectural forms</p></div>
+            </div>
+            <div class="gallery-item" data-category="portrait" data-title="Timeless Beauty" data-description="Classic elegance transcending time">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Timeless">
+                <div class="hover-details"><h3>Timeless Beauty</h3><p>Classic elegance transcending time</p></div>
+            </div>
+            <div class="gallery-item" data-category="abstract" data-title="Fractured Thoughts" data-description="Broken perspectives and fragmented vision">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=500&q=80" alt="Fractured">
+                <div class="hover-details"><h3>Fractured Thoughts</h3><p>Broken perspectives and fragmented vision</p></div>
+            </div>
+            <div class="gallery-item" data-category="nature" data-title="Waterfall Force" data-description="Cascading power of flowing water">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Waterfall">
+                <div class="hover-details"><h3>Waterfall Force</h3><p>Cascading power of flowing water</p></div>
+            </div>
+            <div class="gallery-item" data-category="travel" data-title="City Explorer" data-description="Metropolitan adventure and discovery">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Explorer">
+                <div class="hover-details"><h3>City Explorer</h3><p>Metropolitan adventure and discovery</p></div>
+            </div>
+            <div class="gallery-item" data-category="architecture" data-title="Steel Structure" data-description="Industrial strength and precision">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=500&q=80" alt="Steel">
+                <div class="hover-details"><h3>Steel Structure</h3><p>Industrial strength and precision</p></div>
+            </div>
+            <div class="gallery-item" data-category="portrait" data-title="Expression Art" data-description="Raw emotion captured in frame">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Expression">
+                <div class="hover-details"><h3>Expression Art</h3><p>Raw emotion captured in frame</p></div>
+            </div>
+            <div class="gallery-item" data-category="abstract" data-title="Chaos Order" data-description="Finding harmony in disorder">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=500&q=80" alt="Chaos">
+                <div class="hover-details"><h3>Chaos Order</h3><p>Finding harmony in disorder</p></div>
+            </div>
+            <div class="gallery-item" data-category="nature" data-title="Starry Night" data-description="Celestial wonders in darkness">
+                <img src="https://images.unsplash.com/photo-1444080748397-f442aa95c3e5?auto=format&fit=crop&w=500&q=80" alt="Stars">
+                <div class="hover-details"><h3>Starry Night</h3><p>Celestial wonders in darkness</p></div>
+            </div>
+            <div class="gallery-item" data-category="travel" data-title="Expedition" data-description="Journey into the unknown">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Expedition">
+                <div class="hover-details"><h3>Expedition</h3><p>Journey into the unknown</p></div>
+            </div>
+            <div class="gallery-item" data-category="architecture" data-title="Ancient Modern" data-description="Blending old world with new design">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=500&q=80" alt="Ancient">
+                <div class="hover-details"><h3>Ancient Modern</h3><p>Blending old world with new design</p></div>
+            </div>
+            <div class="gallery-item" data-category="portrait" data-title="Radiance" data-description="Inner light shining through">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Radiance">
+                <div class="hover-details"><h3>Radiance</h3><p>Inner light shining through</p></div>
+            </div>
+            <div class="gallery-item" data-category="abstract" data-title="Infinite Space" data-description="Boundless dimensions and perspectives">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=500&q=80" alt="Infinite">
+                <div class="hover-details"><h3>Infinite Space</h3><p>Boundless dimensions and perspectives</p></div>
+            </div>
+            <div class="gallery-item" data-category="nature" data-title="Aurora Borealis" data-description="Northern lights dancing across sky">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Aurora">
+                <div class="hover-details"><h3>Aurora Borealis</h3><p>Northern lights dancing across sky</p></div>
+            </div>
+            <div class="gallery-item" data-category="travel" data-title="Bazaar Colors" data-description="Vibrant marketplace culture">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Bazaar">
+                <div class="hover-details"><h3>Bazaar Colors</h3><p>Vibrant marketplace culture</p></div>
+            </div>
+            <div class="gallery-item" data-category="architecture" data-title="Symmetry" data-description="Perfect balance in structure">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=500&q=80" alt="Symmetry">
+                <div class="hover-details"><h3>Symmetry</h3><p>Perfect balance in structure</p></div>
+            </div>
+            <div class="gallery-item" data-category="portrait" data-title="Whisper" data-description="Subtle emotion and quiet power">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Whisper">
+                <div class="hover-details"><h3>Whisper</h3><p>Subtle emotion and quiet power</p></div>
+            </div>
+            <div class="gallery-item" data-category="abstract" data-title="Nebula" data-description="Cosmic abstract interpretation">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=500&q=80" alt="Nebula">
+                <div class="hover-details"><h3>Nebula</h3><p>Cosmic abstract interpretation</p></div>
+            </div>
+            <div class="gallery-item" data-category="nature" data-title="Spring Bloom" data-description="Fresh flowers awakening to life">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Bloom">
+                <div class="hover-details"><h3>Spring Bloom</h3><p>Fresh flowers awakening to life</p></div>
+            </div>
+            <div class="gallery-item" data-category="travel" data-title="Desert Night" data-description="Tranquil wilderness under stars">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Desert Night">
+                <div class="hover-details"><h3>Desert Night</h3><p>Tranquil wilderness under stars</p></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-lightbox" id="lightboxModal">
+        <div class="lightbox-container">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <img class="lightbox-image" id="lightboxImage" src="" alt="Enlarged image">
+            <div class="lightbox-details">
+                <h2 id="lightboxTitle"></h2>
+                <p id="lightboxDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
